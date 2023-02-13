@@ -20,7 +20,7 @@ buttonAddItem.addEventListener("click", function(e){
     vendaItens.innerHTML +=`
     <fieldset>
     <div id="itens_list">
-    <p>Id: ${val.id}
+    <p>Id: ${val.id}z
     <p>Descrição: ${val.item}</p>
     <p>Valor: R$${val.valor}</p>
     <p>Quantidade: ${val.quant}</p>
