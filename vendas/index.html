@@ -5,27 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="?"/>
+    <link rel="stylesheet" href="style.css" />
     <title>Console de Vendas Rápida</title>
 </head>
 <body>
     <fieldset>
-    <legend>Buscar Item - Digite o nome do Produto, ID ou Barras</legend>
+    <legend>Digite o nome do Item, ID ou Barras</legend>
     <form >
     <label>Item: </label>
     <input type="search" list="itens" id="item" required placeholder="Buscar item">
     <datalist id="itens">
+        
     <div id="listItens"></div>
     </datalist><br></br>
     <label>Informe a quantidade:</label><br>
     <input type="number" id="quant">
-    <button id="search" >incluir item !!</button><br></br>
+    <button id="search" >Incluir.</button><br></br>
     </form>
     </fieldset> 
     <fieldset>
         <legend>Item(s) Lançados</legend>
-        <div id="searchItem"></div> 
+        <div id="includedItems">Descrição Quant Valor Total</div> 
     </fieldset>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>

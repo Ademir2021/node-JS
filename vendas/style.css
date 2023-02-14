@@ -1,0 +1,7 @@
+#item{
+    font-size: 26px;
+    color:blue;
+    padding: 2px;
+    padding-inline-start: 2%;
+    cursor: pointer;
+}
