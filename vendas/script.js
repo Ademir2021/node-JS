@@ -1,53 +1,65 @@
-const url = "http://localhost:3000/products";
-const includedItems = document.getElementById("includedItems")
-const buttonSearchItem = document.querySelector("#search")
-const listItens= document.getElementById("listItens");
-const soldItems = [] /**Itens Vendidos */
+const url_prod = "http://localhost:3000/products";
+const url_sale = "http://localhost:3000/sales";
+const includedItems = document.getElementById("includedItems");
+const btnSearchItem = document.querySelector("#search");
+const listItens = document.getElementById("listItens");
+const sale = [{fk_name_pers:1, disc_sale:2.30}] /** Venda + Itens Lancados */
+getItem() /**Pegar itens */
 
-
-getItem()
-
+// const itens = [ /**inclui estes itens */
+//                 {item:"Mouse", quant:1, valor:18.00, totalItem:18.00},
+//                 {item:"Teclado", quant:1, valor:38.00, totalItem:38.00},
+//                 {item:"Conector F", quant:1, valor:1.50, totalItem:1.50}
+//               ]
+// itens.map((s)=>{sale.push(s)}) /**inclui itens da lista na Venda */
 
 async function getItem(){
-   await axios.get(url)
+   await axios.get(url_prod)
     .then(response =>{
-        const data = response.data
-        const itens = data
+        const data = response.data;
+        const itens = data;
         itens.map((val)=>{
-        listItens.innerHTML+=`
-        <option value = "${val.descric_product}"></option>`
+            listItens.innerHTML+=` 
+            <option value = "${val.descric_product}"></option>`
         })
 
-buttonSearchItem.addEventListener("click", function(e){
-    e.preventDefault()
-        const item = document.getElementById("item").value
-        const quant = document.getElementById("quant").value
+btnSearchItem.addEventListener("click", function(e){
+    e.preventDefault();
+        const item = document.getElementById("descric_product").value;
+        const amount_product = document.getElementById("amount_product").value;
         for(let i=0; itens.length > i; i++)
-            if (item == itens[i].descric_product || item == itens[i].id_product || item == itens[i].bar_code ){
-                let newItem = {}
-                newItem.item = itens[i].descric_product
-                newItem.quant = quant
-                let valor = itens[i].val_max_product
-                newItem.valor = parseFloat(valor).toFixed(2)
-                let totalItem_ = 0
-                totalItem_ = itens[i].val_max_product * quant;
-                newItem.totalItem = parseFloat(totalItem_).toFixed(2)
+            if (item == itens[i].descric_product
+                || item == itens[i].id_product
+                || item == itens[i].bar_code ){
+                const newItem = {};
+                newItem.id_product = itens[i].id_product;
+                newItem.descric_product = itens[i].descric_product;
+                newItem.amount_product = amount_product;
+                const val_product = itens[i].val_max_product;
+                newItem.val_product = parseFloat(val_product).toFixed(2);
+                const total_product_ = itens[i].val_max_product * amount_product;
+                newItem.total_product = parseFloat(total_product_).toFixed(2);
                 includedItems.innerHTML +=`
                 <div id="parent">
-                <div>${newItem.item}</div>
-                <div id="x">${newItem.quant}</div>
-                <div>${newItem.valor}</div>
-                <div>${newItem.totalItem}</div>
-                <div><button onclick=myFunc()>Click me</button></div>
-                </div>
-                `
-                console.log(newItem)
-                soldItems.push(newItem)
+                <b>${newItem.id_product}</b>
+                <b>${newItem.descric_product}</b>
+                <b>${newItem.amount_product}</b>
+                <b>${newItem.val_product}</b>
+                <b>${newItem.total_product}</b>
+                <button onclick=clearItem()>X</button>
+                </div> 
+                </fieldset>`
+                sale.push(newItem);
+                console.log(sale);
                 }
             }
-            )}).catch(error =>console.log(error))
+            )}).catch(error =>console.log(error));
+        }
+        
+        function clearItem() {
+            $('#parent', ).empty();
         }
 
-        function myFunc() {
-            $('#parent').empty();
+        function newItem(){
+            i
         }
