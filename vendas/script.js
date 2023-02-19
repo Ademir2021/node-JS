@@ -3,8 +3,13 @@ const url_sale = "http://localhost:3000/sales";
 const includedItems = document.getElementById("includedItems");
 const btnSearchItem = document.querySelector("#search");
 const listItens = document.getElementById("listItens");
-const sale = [{fk_name_pers:1, disc_sale:2.30}] /** Venda + Itens Lancados */
+const sale = [{fk_name_pers:0, disc_sale:0}] /** Venda + Itens Lancados */
 getItem() /**Pegar itens */
+
+const setName = 5
+sale[0].fk_name_pers = setName
+const setDisc = 4.80
+sale[0].disc_sale = setDisc
 
 // const itens = [ /**inclui estes itens */
 //                 {item:"Mouse", quant:1, valor:18.00, totalItem:18.00},
@@ -58,8 +63,4 @@ btnSearchItem.addEventListener("click", function(e){
         
         function clearItem() {
             $('#parent', ).empty();
-        }
-
-        function newItem(){
-            i
         }
